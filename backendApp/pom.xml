@@ -8,11 +8,11 @@
 		<version>4.0.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>net.etfbl.ip</groupId>
-	<artifactId>backendApp</artifactId>
+	<groupId>com.etfbl.ip</groupId>
+	<artifactId>BackendApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>BackendApp</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Restfull service for project task.</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -52,6 +52,11 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.26</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+			<version>3.0.2</version>
 		</dependency>
 	</dependencies>
 
