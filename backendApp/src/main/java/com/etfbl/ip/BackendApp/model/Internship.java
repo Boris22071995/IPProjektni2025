@@ -1,5 +1,6 @@
 package com.etfbl.ip.BackendApp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -35,17 +36,22 @@ public class Internship {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "companyId", nullable = false)
+    @JsonIgnore
     private Company company;
 
     @OneToMany(mappedBy = "internship", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<InternshipTechnology> technologies;
 
     @OneToMany(mappedBy = "internship", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<InternshipApplication> applications;
 
     @OneToMany(mappedBy = "internship", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<InternshipAssignment> assignments;
 
     @OneToMany(mappedBy = "internship", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<AiRecommendation> aiRecommendations;
 }

@@ -1,0 +1,222 @@
+<div class="cv-layout">
+
+  <!-- LEFT: FORM -->
+  <mat-card class="cv-card form-panel">
+
+    <h1 class="euro">Europass CV</h1>
+
+    <!-- IMAGE -->
+    <div class="image-section">
+      <img *ngIf="imagePreview" [src]="imagePreview" class="avatar" />
+      <input type="file" hidden #fileInput (change)="onImageSelected($event)">
+      <button mat-stroked-button color="primary" (click)="fileInput.click()">
+        Upload Photo
+      </button>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="cvForm" (ngSubmit)="submit()">
+
+      <!-- BASIC INFO -->
+      <div class="grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Phone</mat-label>
+          <input matInput formControlName="phone">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="address">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Post Code</mat-label>
+          <input matInput formControlName="postCode">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Date of Birth</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <!-- EDUCATION -->
+      <section>
+        <h2>Education</h2>
+        <div formArrayName="educations" *ngFor="let edu of educations.controls; let i = index">
+          <div [formGroupName]="i" class="section-card">
+            <mat-form-field>
+              <input matInput placeholder="Institution" formControlName="nameOfInstitution">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Title" formControlName="titleName">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [matDatepicker]="eduStart" placeholder="Start Date" formControlName="startDate">
+              <mat-datepicker-toggle matSuffix [for]="eduStart"></mat-datepicker-toggle>
+              <mat-datepicker #eduStart></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [matDatepicker]="eduEnd" placeholder="End Date" formControlName="endDate">
+              <mat-datepicker-toggle matSuffix [for]="eduEnd"></mat-datepicker-toggle>
+              <mat-datepicker #eduEnd></mat-datepicker>
+            </mat-form-field>
+            <button mat-icon-button color="warn" (click)="removeEducation(i)" *ngIf="educations.length > 1">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+        <button mat-button color="primary" (click)="addEducation()">+ Add education</button>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section>
+        <h2>Experience</h2>
+        <div formArrayName="experiences" *ngFor="let exp of experiences.controls; let i = index">
+          <div [formGroupName]="i" class="section-card">
+            <mat-form-field>
+              <input matInput placeholder="Company" formControlName="company">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Position" formControlName="position">
+            </mat-form-field>
+            <mat-form-field>
+              <textarea matInput placeholder="Description" formControlName="description"></textarea>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [matDatepicker]="expStart" placeholder="Start Date" formControlName="startDate">
+              <mat-datepicker-toggle matSuffix [for]="expStart"></mat-datepicker-toggle>
+              <mat-datepicker #expStart></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [matDatepicker]="expEnd" placeholder="End Date" formControlName="endDate">
+              <mat-datepicker-toggle matSuffix [for]="expEnd"></mat-datepicker-toggle>
+              <mat-datepicker #expEnd></mat-datepicker>
+            </mat-form-field>
+            <button mat-icon-button color="warn" (click)="removeExperience(i)" *ngIf="experiences.length > 1">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+        <button mat-button color="primary" (click)="addExperience()">+ Add experience</button>
+      </section>
+
+      <!-- SKILLS -->
+      <section>
+        <h2>Skills</h2>
+        <div formArrayName="skills" *ngFor="let skill of skills.controls; let i = index">
+          <div [formGroupName]="i" class="section-card">
+            <mat-form-field>
+              <input matInput placeholder="Skill name" formControlName="skillName">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Level</mat-label>
+              <mat-select formControlName="level">
+                <mat-option value="BEGINNER">Beginner</mat-option>
+                <mat-option value="INTERMEDIATE">Intermediate</mat-option>
+                <mat-option value="ADVANCED">Advanced</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button mat-icon-button color="warn" (click)="removeSkill(i)" *ngIf="skills.length > 1">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+        <button mat-button color="primary" (click)="addSkill()">+ Add skill</button>
+      </section>
+
+      <!-- INTERESTS -->
+      <section>
+        <h2>Interests</h2>
+        <div formArrayName="interests" *ngFor="let interest of interests.controls; let i = index">
+          <div [formGroupName]="i" class="section-card">
+            <mat-form-field>
+              <input matInput placeholder="Interest" formControlName="interestName">
+            </mat-form-field>
+            <button mat-icon-button color="warn" (click)="removeInterest(i)" *ngIf="interests.length > 1">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+        <button mat-button color="primary" (click)="addInterest()">+ Add interest</button>
+      </section>
+
+      <button mat-raised-button color="primary" class="submit-btn" type="submit">
+        Create CV
+      </button>
+
+
+    </form>
+  </mat-card>
+
+  <!-- RIGHT: PREVIEW -->
+  <mat-card class="cv-card preview-panel">
+
+    <h2>CV Preview</h2>
+
+    <div class="preview-header">
+      <img *ngIf="imagePreview" [src]="imagePreview" class="preview-avatar">
+      <div>
+        <p><strong>Email:</strong> {{ cvForm.value.email }}</p>
+        <p><strong>Phone:</strong> {{ cvForm.value.phone }}</p>
+        <p><strong>Address:</strong> {{ cvForm.value.address }}</p>
+        <p><strong>City:</strong> {{ cvForm.value.city }}</p>
+        <p><strong>Post Code:</strong> {{ cvForm.value.postCode }}</p>
+        <p><strong>Date of Birth:</strong> {{ cvForm.value.dateOfBirth | date }}</p>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <h3>Education</h3>
+    <div *ngFor="let edu of cvForm.value.educations">
+      <p class="preview-item-title">{{ edu.nameOfInstitution }}</p>
+      <p>{{ edu.titleName }}</p>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <h3>Experience</h3>
+    <div *ngFor="let exp of cvForm.value.experiences">
+      <p class="preview-item-title">
+        {{ exp.company }} – {{ exp.position }}
+      </p>
+      <p>{{ exp.startDate | date }} – {{ exp.endDate | date }}</p>
+      <p>{{ exp.description }}</p>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <h3>Skills</h3>
+    <ul>
+      <li *ngFor="let s of cvForm.value.skills">
+        {{ s.skillName }} – {{ s.level }}
+      </li>
+    </ul>
+
+    <mat-divider></mat-divider>
+
+    <h3>Interests</h3>
+    <ul>
+      <li *ngFor="let i of cvForm.value.interests">
+        {{ i.interestName }}
+      </li>
+    </ul>
+
+  </mat-card>
+
+</div>

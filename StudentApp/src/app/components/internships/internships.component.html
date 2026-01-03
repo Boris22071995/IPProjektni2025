@@ -1,0 +1,55 @@
+<mat-card>
+  <h2>Available Internships</h2>
+
+  <table mat-table [dataSource]="internships" class="mat-elevation-z2">
+
+    <!-- TITLE -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let i"> {{ i.title }} </td>
+    </ng-container>
+
+    <!-- COMPANY -->
+    <ng-container matColumnDef="company">
+      <th mat-header-cell *matHeaderCellDef> Company </th>
+      <td mat-cell *matCellDef="let i"> {{ i.companyName }} </td>
+    </ng-container>
+
+    <!-- TECHNOLOGIES -->
+    <ng-container matColumnDef="technologies">
+      <th mat-header-cell *matHeaderCellDef> Technologies </th>
+      <td mat-cell *matCellDef="let i">
+        <mat-chip-listbox>
+          <mat-chip *ngFor="let t of i.technologies">
+            {{ t }}
+          </mat-chip>
+        </mat-chip-listbox>
+      </td>
+    </ng-container>
+
+    <!-- DATES -->
+    <ng-container matColumnDef="dates">
+      <th mat-header-cell *matHeaderCellDef> Duration </th>
+      <td mat-cell *matCellDef="let i">
+        {{ i.startDate | date }} – {{ i.endDate | date }}
+      </td>
+    </ng-container>
+
+    <!-- ACTIONS -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let i">
+        <button mat-button color="primary" (click)="viewDetails(i)">
+          Details
+        </button>
+        <button mat-raised-button color="accent" (click)="apply(i)">
+          Apply
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+</mat-card>

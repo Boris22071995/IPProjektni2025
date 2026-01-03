@@ -1,0 +1,54 @@
+<div class="worklog-wrapper">
+
+  <!-- HEADER -->
+  <mat-card class="worklog-header">
+    <h2>{{ internshipTitle }}</h2>
+    <p>{{ companyName }}</p>
+  </mat-card>
+
+  <div class="worklog-content">
+
+    <!-- LEFT: INPUT -->
+    <mat-card class="worklog-input">
+
+      <h3>Add Weekly Work Log</h3>
+
+      <form [formGroup]="workLogForm">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Week number</mat-label>
+          <input matInput type="number" formControlName="weekNumber">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Activities</mat-label>
+          <textarea matInput rows="6" formControlName="activities"></textarea>
+        </mat-form-field>
+
+        <button mat-raised-button
+                color="primary"
+                (click)="saveWorkLog()">
+          Save Work Log
+        </button>
+
+      </form>
+
+    </mat-card>
+
+    <!-- RIGHT: PREVIEW -->
+    <mat-card class="worklog-preview">
+
+      <h3>Work Log Overview</h3>
+
+      <div *ngFor="let log of workLogs" class="week-entry">
+        <h4>Week {{ log.weekNumber }}</h4>
+        <p>{{ log.activities }}</p>
+        <mat-divider></mat-divider>
+      </div>
+
+    </mat-card>
+
+  </div>
+
+</div>
+

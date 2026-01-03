@@ -12,4 +12,6 @@ public interface RoleService {
     Optional<Role> findById(Integer id);
 
     List<Role> findAll();
+
+    Role findByName(String name);
 }

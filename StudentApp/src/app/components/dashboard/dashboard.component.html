@@ -1,0 +1,19 @@
+<mat-toolbar class="header">
+  StudentApp
+</mat-toolbar>
+
+<div class="dashboard-container">
+
+  <mat-nav-list class="sidebar">
+    <a mat-list-item routerLink="/dashboard">Dashboard</a>
+    <a mat-list-item routerLink="cv" routerLinkActive="active">Create CV</a>
+    <a mat-list-item routerLink="internships">Internships</a>
+    <a mat-list-item routerLink="ai">AI recommendation</a>
+    <a mat-list-item routerLink="work-log">Work log</a>
+  </mat-nav-list>
+
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

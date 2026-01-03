@@ -1,5 +1,6 @@
 package com.etfbl.ip.BackendApp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,5 +18,6 @@ public class InternshipTechnology {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "internshipId", nullable = false)
+    @JsonIgnore
     private Internship internship;
 }
