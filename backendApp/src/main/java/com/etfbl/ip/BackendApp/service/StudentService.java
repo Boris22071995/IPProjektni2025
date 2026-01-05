@@ -1,6 +1,8 @@
 package com.etfbl.ip.BackendApp.service;
 
 import com.etfbl.ip.BackendApp.model.Student;
+import com.etfbl.ip.BackendApp.model.requests.StudentRequest;
+import com.etfbl.ip.BackendApp.model.respons.StudentResponse;
 
 import java.util.List;
 
@@ -8,7 +10,7 @@ public interface StudentService {
 
     Student save(Student student);
 
-    Student update(Integer id, Student student);
+    Student update(String index, StudentRequest studentRequest);
 
     List<Student> findAll();
 
@@ -18,5 +20,9 @@ public interface StudentService {
 
     Student findByIndexNumber(String indexNumber);
 
-    void delete(Integer id);
+    List<StudentResponse> findAllForFaculty();
+
+    void delete(String index);
+
+    void createStudent(StudentRequest studentRequest);
 }

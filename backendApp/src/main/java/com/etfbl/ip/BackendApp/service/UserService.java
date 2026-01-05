@@ -16,4 +16,5 @@ public interface UserService {
     User findByUsername(String username);
 
     Optional<User> findByUsernameAndPassword(String username, String password);
+
 }

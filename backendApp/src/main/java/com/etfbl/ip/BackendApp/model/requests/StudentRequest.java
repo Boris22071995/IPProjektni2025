@@ -20,4 +20,7 @@ public class StudentRequest {
 
     @NotNull
     String username;
+
+    @NotNull
+    String password;
 }

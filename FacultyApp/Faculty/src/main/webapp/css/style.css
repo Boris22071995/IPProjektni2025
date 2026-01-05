@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.login-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f2f2;
+}
+
+.login-card {
+  width: 350px;
+  padding: 25px;
+  text-align: center;
+  background: white;
+  border-radius: 8px;
+}
+
+.login-card h1 {
+  color: #fbc02d;
+  margin-bottom: 5px;
+}
+
+.login-card h3 {
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.error {
+  color: red;
+  margin-bottom: 10px;
+}

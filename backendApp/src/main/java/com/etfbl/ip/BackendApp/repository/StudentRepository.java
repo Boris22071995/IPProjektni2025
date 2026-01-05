@@ -8,4 +8,6 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     public Student findByUserId(Integer id);
 
     public Student findByIndexNumber(String indexNumber);
+
+    public void deleteByIndexNumber(String indexNumber);
 }
